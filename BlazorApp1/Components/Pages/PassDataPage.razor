@@ -1,0 +1,23 @@
+﻿@page "/passdata/{Data?}"
+@inject NavigationManager Nav
+<h3>Pass Data</h3>
+
+<p>Data passed is: @Data</p>
+
+<div>
+    <label>Data To Send</label>
+    <input type="text" @bind-value="dataToSend" />
+    <button @onclick="Send">Send</button>
+</div>
+
+
+@code {
+    string? dataToSend;
+
+    [Parameter] public string? Data{ get; set; }
+
+    void Send()
+    {
+        Nav.NavigateTo($"mycustomprotocol://{dataToSend}");
+    }
+}
